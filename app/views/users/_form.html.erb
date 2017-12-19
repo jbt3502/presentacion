@@ -1,0 +1,94 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_type_id, 'Tipo de usuario' %>
+    <% if current_user %>
+      <% if current_user.user_type_id==1 %>
+        <%= form.collection_select(:user_type_id, UserType.all, :id, :nombre) %>
+      <% else %>
+        <%= select(:user, :user_type_id, [['visitante', 2]]) %>
+      <% end %>
+    <% else %>
+      <%= select(:user, :user_type_id, [['visitante', 2]]) %>
+    <% end %>
+    
+  </div>
+
+  <div class="field">
+    <%= form.label :email, 'Correo' %>
+    <%= form.text_field :email, id: :user_email, required: true %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :email, 'Confirmar Correo' %>
+    <%= form.text_field :email, id: :user_email, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, 'Clave' %>
+    <%= form.password_field :password, id: :usuario_crypted_password, required: true %>
+  </div>
+
+  <div class="field", 'Confirmar Clave'>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :user_nombre, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_paterno %>
+    <%= form.text_field :apellido_paterno, id: :user_apellido_paterno, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_materno %>
+    <%= form.text_field :apellido_materno, id: :user_apellido_materno, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sexo %>
+    <%= select(:persona, :sexo, [['Femenino', 0], ['Masculino', 1]]) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dni %>
+    <%= form.number_field :dni, id: :user_dni, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_nacimiento %>
+    <%= form.date_select :fecha_nacimiento, id: :persona_fecha_nacimiento, start_year: 1970, end_year: 2010 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :celular %>
+    <%= form.text_field :celular, id: :user_celular, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direccion %>
+    <%= form.text_field :direccion, id: :user_direccion, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Enviar datos' %>
+  </div>
+<% end %>
+
+
+

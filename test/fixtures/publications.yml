@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  field: one
+  nombre: MyString
+  descripcion: MyString
+  fecha_inicio: 2017-12-16
+  fecha_fin: 2017-12-16
+  tarifa: 9.99
+
+two:
+  field: two
+  nombre: MyString
+  descripcion: MyString
+  fecha_inicio: 2017-12-16
+  fecha_fin: 2017-12-16
+  tarifa: 9.99

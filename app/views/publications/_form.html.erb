@@ -1,0 +1,47 @@
+<%= form_with(model: publication, local: true) do |form| %>
+  <% if publication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+
+      <ul>
+      <% publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :field_id, 'Canchas' %>
+    <%= form.collection_select(:field_id, Field.all, :id, :nombre) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :publication_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_field :descripcion, id: :publication_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_inicio %>
+    <%= form.date_select :fecha_inicio, id: :publication_fecha_inicio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_fin %>
+    <%= form.date_select :fecha_fin, id: :publication_fecha_fin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tarifa %>
+    <%= form.text_field :tarifa, id: :publication_tarifa %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Enviar datos' %>
+  </div>
+<% end %>
